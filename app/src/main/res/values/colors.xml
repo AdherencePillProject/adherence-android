@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="material_blue_500" type="color">#FF2196F3</item>
+    <item name="material_blue_700" type="color">#FF1976D2</item>
+    <item name="material_green_A200" type="color">#FFA5D6A7</item>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="medicine_hardcode">
+        <item>Advil</item>
+        <item>Aderall</item>
+        <item>Ponstyl</item>
+        <item>Benadryl</item>
+        <item>Xanax</item>
+        <item>Vitamin C</item>
+        <item>Vitamin A</item>
+        <item>Vitamin B12</item>
+        <item>Vitamin B6</item>
+        <item>Vitamin B29812</item>
+    </string-array>
+</resources>
