@@ -1,5 +1,10 @@
 package com.adherence.adherence;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +20,8 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -57,12 +64,28 @@ public class MainActivity extends AppCompatActivity
         query.getInBackground("J6zj4tmfqh", new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
-                    Toast.makeText(getBaseContext(), object.getString("foo"), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Retrieved from Parse: " + object.getString("foo"), Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getBaseContext(), "Couldn't retrieve Parse object", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+        // Create delayed Notification test
+        createDelayedNotification();
+    }
+
+    private void createDelayedNotification() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, 20);
+
+        Intent notificationIntent = new Intent(this, NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, 0);
+
+        long futureInMillis = cal.getTimeInMillis();
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setExact(AlarmManager.RTC, futureInMillis, pendingIntent);
+        Log.v("TAG" ,"set alarm manager");
     }
 
     @Override
